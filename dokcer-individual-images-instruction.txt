@@ -1,0 +1,47 @@
+1) Create network
+docker network create crud-network
+-------------------------------------------------------
+  Mysql Docker image
+
+docker run -d \
+  --name mysql \
+  --network crud-network \
+  -e MYSQL_ROOT_PASSWORD=Aditya \
+  -e MYSQL_DATABASE=crud_app \
+  -v mysql-data:/var/lib/mysql \
+  -v $(pwd)/mysql-init:/docker-entrypoint-initdb.d \
+  -p 3306:3306 \
+  mysql:8
+
+------------------------------------------------------------------
+    Bakcend-api
+
+Create Docker image first  docker build -t backend-api ./api
+
+
+  docker run -d \
+  --name backend-api \
+  --network crud-network \
+  -e DB_HOST=mysql \
+  -e DB_USER=root \
+  -e DB_PASSWORD=Aditya \
+  -e DB_NAME=crud_app \
+  -e JWT_SECRET=devopsShackSuperSecretKey \
+  -e RESET_ADMIN_PASS=true \
+  -p 5000:5000 \
+  backend-api
+
+------------------------------------------------
+
+    Front-app
+ create docker image : docker build -t frontend-react ./client
+    
+docker run -d \
+  --name frontend-react \
+  --network crud-network \
+  -p 3000:80 \
+  frontend-react
+
+    
+    
+  
