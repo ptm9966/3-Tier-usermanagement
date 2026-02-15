@@ -34,8 +34,9 @@ jobs:
 
       - name: build_clinet_app
         run: |
+            set -eu
             echo "-------- clinet build------"
-            cd clinet
+            cd client
             npm install
             npm run build
       - name: build_api_app
