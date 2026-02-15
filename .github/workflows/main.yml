@@ -23,5 +23,14 @@ jobs:
                git checkout ${{ github.event.inputs.branch }}
                node -v
                npm -v
+      - name: build app 
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.X'
+      - name: check_node version
+        run: |
+           node -v
+           npm -v
+          
      
     
