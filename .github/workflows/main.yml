@@ -26,7 +26,7 @@ jobs:
       - name: build app 
         uses: actions/setup-node@v4
         with:
-          node-version: '20.X'
+          node-version: '24.X'
       - name: check_node version
         run: |
            node -v
