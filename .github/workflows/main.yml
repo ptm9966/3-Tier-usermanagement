@@ -31,6 +31,16 @@ jobs:
         run: |
            node -v
            npm -v
-          
-     
+
+      - name: build_clinet_app
+        run: |
+            echo "-------- clinet build------"
+            cd clinet
+            npm install
+            npm run build
+      - name: build_api_app
+        run: |
+           cd api
+           npm install
+           npm run build
     
