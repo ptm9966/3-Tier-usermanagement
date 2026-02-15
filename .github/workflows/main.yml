@@ -21,5 +21,7 @@ jobs:
                ls -lah
                git branch
                git checkout ${{ github.event.inputs.branch }}
+               node -v
+               npm -v
      
     
