@@ -41,6 +41,8 @@ jobs:
             cd client
             npm install
             npm run build
+            echo "------------ show_files-----"
+            ls -lah
       - name: build_api_app
         run: |
            cd api
