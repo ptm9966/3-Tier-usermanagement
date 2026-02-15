@@ -1,0 +1,25 @@
+name: pull_request_pipeline
+on: 
+  workflow_dispatch:
+    inputs:
+      branch:
+        type: string
+        description: provide_branch
+        required: true
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v6.0.2
+        with:
+          fetch-depth: 0
+      - name: check_nvm_version
+        shell: bash
+        run: |
+               pwd
+               ls -lah
+               git branch
+               git checkout ${{ github.event.inputs.branch }}
+     
+    
