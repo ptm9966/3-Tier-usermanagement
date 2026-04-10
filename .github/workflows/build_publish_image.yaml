@@ -1,0 +1,51 @@
+name: build_publish_image
+permissions: 
+   contents: read
+   packages: write
+   id-token: write
+   pull-requests: write
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_publish_image:
+    name: build_publish_image
+    runs-on: ubuntu-22.04
+    steps:
+      - name: checkout_repo
+        uses: actions/checkout@v6.0.2
+
+      - name: docker_login
+        uses: docker/login-action@v4.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: build_backend_image
+        working-directory: ./api
+        run: |
+           docker build -t ghcr.io/ptm9966/usermanagment-backend:latest -t ghcr.io/ptm9966/usermanagment-backend:${{ github.sha }} .
+      - name: build_frontend_image
+        working-directory: ./client
+        run: |
+           docker build -t ghcr.io/ptm9966/usermanagment-backend:latest -t ghcr.io/ptm9966/usermanagment-frontend:${{ github.sha }} .
+      - name: publish_image
+        working-directory: ./api
+        run: |
+            docker images
+            docker push ghcr.io/ptm9966/usermanagment-backend:${{ github.sha }}
+            docker push ghcr.io/ptm9966/usermanagment-frontend:${{ github.sha }}         
+
+           
+
+
+
+
+
+          
+
+          
