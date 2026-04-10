@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: adijaiswal/backend:latest
+          image: ghcr.io/ptm9966/usermanagment-backend:5214ff341d8bd0de0ab227329177b467cd3aeaee
           ports:
             - containerPort: 5000
           env:
@@ -74,7 +74,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend
+  name: backend-svc
 spec:
   type: LoadBalancer
   selector:
