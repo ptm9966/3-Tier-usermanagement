@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: adijaiswal/frontend:latest
+          image: ghcr.io/ptm9966/usermanagment-frontend:5214ff341d8bd0de0ab227329177b467cd3aeaee
           ports:
             - containerPort: 80
 ---
