@@ -25,17 +25,20 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: build_image
+      - name: build_backend_image
         working-directory: ./api
         run: |
            docker build -t ghcr.io/ptm9966/usermanagment-backend:latest -t ghcr.io/ptm9966/usermanagment-backend:${{ github.sha }} .
-           
+      - name: build_frontend_image
+        working-directory: ./client
+        run: |
+           docker build -t ghcr.io/ptm9966/usermanagment-backend:latest -t ghcr.io/ptm9966/usermanagment-frontend:${{ github.sha }} .
       - name: publish_image
         working-directory: ./api
         run: |
             docker images
             docker push ghcr.io/ptm9966/usermanagment-backend:${{ github.sha }}
-            
+            docker push ghcr.io/ptm9966/usermanagment-frontend:${{ github.sha }}         
 
            
 
